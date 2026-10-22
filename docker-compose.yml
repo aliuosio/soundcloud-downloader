@@ -1,6 +1,11 @@
 services:
   scdl:
-    build: .
+    build:
+      context: .
+      args:
+        BASE_IMAGE: ${BASE_IMAGE:-debian:bullseye}
+        TZ: ${TZ:-America/New_York}
+    image: ${IMAGE_NAME:-soundcloud-downloader:latest}
     container_name: soundcloud-downloader
     restart: unless-stopped
     tty: true
@@ -8,14 +13,12 @@ services:
     network_mode: host
     privileged: true
     volumes:
-      - /home/krusty/Music/soundcloud:/Music/SoundCloud/krusty
+      - ${MUSIC_PATH:-/home/krusty/Music/soundcloud}:/Music/SoundCloud/${SCDL_USERNAME:-krusty}
       - ~/.config/scdl:/root/.config/scdl
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8080/health"] 
-    #   interval: 1m30s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 40s
+    environment:
+      - TZ=${TZ:-America/New_York}
+      - SCDL_USERNAME=${SCDL_USERNAME:-krusty}
+      - SCDL_URL=${SCDL_URL:-https://soundcloud.com/krusty}
     logging:
       options:
         max-size: "10m"
