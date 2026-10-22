@@ -8,7 +8,7 @@ services:
     network_mode: host
     privileged: true
     volumes:
-      - /mnt/g/soundcloud-downloader/jake_lindsey:/Music/SoundCloud/jake_lindsey
+      - /home/krusty/Music/soundcloud:/Music/SoundCloud/krusty
       - ~/.config/scdl:/root/.config/scdl
     # healthcheck:
     #   test: ["CMD", "curl", "-f", "http://localhost:8080/health"] 
