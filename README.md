@@ -59,8 +59,8 @@ All downloads use `--original-art`, `--original-name`, `--original-metadata`, an
 
    The file should contain:
    ```ini
-   [DEFAULT]
-   oauth_token=YOUR_OAUTH_TOKEN_HERE
+   [scdl]
+   auth_token=YOUR_OAUTH_TOKEN_HERE
    ```
 
 This config directory is mounted into the container via `docker-compose.yml`, so the container will automatically use your token.

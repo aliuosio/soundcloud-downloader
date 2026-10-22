@@ -9,11 +9,9 @@ services:
     container_name: soundcloud-downloader
     tty: true
     stdin_open: true
-    network_mode: host
-    privileged: true
     volumes:
-      - ${MUSIC_PATH:-/home/krusty/Music/soundcloud}:/Music/SoundCloud/${SCDL_USERNAME:-krusty}
-      - ~/.config/scdl:/root/.config/scdl
+      - ${MUSIC_PATH:-/home/krusty/Music/soundcloud}/ONE:/Music/SoundCloud/${SCDL_USERNAME:-krusty}/ONE
+      - ~/.config/scdl:/root/.config/scdl:ro
     environment:
       - TZ=${TZ:-America/New_York}
       - SCDL_USERNAME=${SCDL_USERNAME:-person}
